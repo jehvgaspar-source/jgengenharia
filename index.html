@@ -1,0 +1,585 @@
+<title>Eng. Jéssica Gaspar — Engenharia Civil</title>
+<style>
+  :root {
+    --ink: #1c2620;
+    --ink-soft: #445248;
+    --paper: #f6f3ec;
+    --paper-raised: #fffdf8;
+    --mint: #4f9b74;
+    --mint-deep: #2f5d45;
+    --mint-wash: #e4ede4;
+    --blueprint: #35526b;
+    --line: #c9c2b2;
+    --line-soft: #dcd6c8;
+    --shadow: 28 34 26;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #eae6da;
+      --ink-soft: #b7bfb2;
+      --paper: #12180f;
+      --paper-raised: #182016;
+      --mint: #7fcb9e;
+      --mint-deep: #a9e2c0;
+      --mint-wash: #1c2b1f;
+      --blueprint: #8db1cc;
+      --line: #33402f;
+      --line-soft: #263025;
+      --shadow: 0 0 0;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #eae6da;
+    --ink-soft: #b7bfb2;
+    --paper: #12180f;
+    --paper-raised: #182016;
+    --mint: #7fcb9e;
+    --mint-deep: #a9e2c0;
+    --mint-wash: #1c2b1f;
+    --blueprint: #8db1cc;
+    --line: #33402f;
+    --line-soft: #263025;
+    --shadow: 0 0 0;
+  }
+  :root[data-theme="light"] {
+    --ink: #1c2620;
+    --ink-soft: #445248;
+    --paper: #f6f3ec;
+    --paper-raised: #fffdf8;
+    --mint: #4f9b74;
+    --mint-deep: #2f5d45;
+    --mint-wash: #e4ede4;
+    --blueprint: #35526b;
+    --line: #c9c2b2;
+    --line-soft: #dcd6c8;
+    --shadow: 28 34 26;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, ui-serif, serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .sans {
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  .mono {
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 56px);
+  }
+
+  /* ---------- dimension-line divider (blueprint tick rule) ---------- */
+  .dim-rule {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--mint-deep);
+    opacity: 0.75;
+  }
+  .dim-rule svg { flex: 1; height: 10px; display: block; }
+  .dim-rule span {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  /* ---------- header ---------- */
+  header {
+    padding: 22px 0 0;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .stamp {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1.5px solid var(--mint-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    color: var(--mint-deep);
+    flex-shrink: 0;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-name {
+    font-size: 14px;
+    line-height: 1.25;
+  }
+  .brand-name b { display: block; font-size: 15px; }
+  .brand-name em {
+    font-style: normal;
+    font-family: ui-monospace, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .nav-cta {
+    font-family: ui-monospace, monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    padding: 9px 16px;
+    border-radius: 3px;
+    background: var(--mint-deep);
+    color: var(--paper-raised);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  /* ---------- hero ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+    padding: clamp(40px, 7vw, 80px) 0 clamp(48px, 7vw, 72px);
+  }
+  .eyebrow {
+    font-family: ui-monospace, monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mint-deep);
+    margin: 0 0 16px;
+  }
+  h1.name {
+    font-size: clamp(40px, 6vw, 62px);
+    line-height: 1.02;
+    margin: 0 0 18px;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  .tagline {
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+    font-size: clamp(16px, 2vw, 18.5px);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 0 0 28px;
+  }
+  .chip-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  .chip {
+    font-family: ui-monospace, monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    padding: 7px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink-soft);
+  }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 22px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .btn-primary { background: var(--mint-deep); color: var(--paper-raised); }
+  .btn-ghost {
+    border: 1px solid var(--line);
+    color: var(--ink);
+  }
+
+  /* ---------- photo frame ---------- */
+  .frame {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background:
+      linear-gradient(var(--line-soft) 1px, transparent 1px) 0 0 / 100% 14.28%,
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px) 0 0 / 14.28% 100%,
+      var(--mint-wash);
+    overflow: hidden;
+  }
+  .frame-corner {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--mint-deep);
+    opacity: 0.8;
+  }
+  .frame-corner.tl { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+  .frame-corner.tr { top: 10px; right: 10px; border-left: none; border-bottom: none; }
+  .frame-corner.bl { bottom: 10px; left: 10px; border-right: none; border-top: none; }
+  .frame-corner.br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+  .frame-figure {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .frame-caption {
+    position: absolute;
+    left: 16px;
+    bottom: 14px;
+    font-family: ui-monospace, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    color: var(--mint-deep);
+    background: color-mix(in srgb, var(--paper) 78%, transparent);
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+
+  /* ---------- stat strip ---------- */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: clamp(20px, 5vw, 48px);
+    padding: 36px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .stat-num {
+    font-size: clamp(64px, 10vw, 104px);
+    line-height: 0.85;
+    color: var(--mint-deep);
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-label {
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+    font-size: clamp(15px, 1.8vw, 18px);
+    line-height: 1.4;
+    max-width: 34ch;
+    color: var(--ink-soft);
+  }
+  .stat-label b { color: var(--ink); }
+
+  /* ---------- services ---------- */
+  .section-head {
+    padding: clamp(56px, 8vw, 84px) 0 28px;
+  }
+  .section-title {
+    font-size: clamp(26px, 3.4vw, 34px);
+    margin: 10px 0 0;
+    text-wrap: balance;
+  }
+
+  .services {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    padding-bottom: clamp(40px, 6vw, 64px);
+  }
+  .service {
+    position: relative;
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 30px 26px 26px;
+  }
+  .service::before,
+  .service::after {
+    content: "+";
+    position: absolute;
+    color: var(--line);
+    font-size: 13px;
+    font-family: ui-monospace, monospace;
+  }
+  .service::before { top: 8px; left: 10px; }
+  .service::after { bottom: 8px; right: 10px; }
+  .service-index {
+    font-family: ui-monospace, monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    color: var(--mint-deep);
+    display: block;
+    margin-bottom: 14px;
+  }
+  .service h3 {
+    font-size: 21px;
+    margin: 0 0 12px;
+    text-wrap: balance;
+  }
+  .service p {
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.62;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- trust / callout ---------- */
+  .callout {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(24px, 5vw, 56px);
+    align-items: start;
+    padding: clamp(40px, 6vw, 60px) 0;
+    border-top: 1px solid var(--line);
+  }
+  .callout-label {
+    font-family: ui-monospace, monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mint-deep);
+  }
+  .callout blockquote {
+    margin: 14px 0 0;
+    font-size: clamp(21px, 2.6vw, 28px);
+    line-height: 1.4;
+    text-wrap: balance;
+  }
+  .callout-body {
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    padding-top: 6px;
+  }
+  .callout-body p { margin: 0 0 14px; }
+  .callout-body p:last-child { margin: 0; }
+
+  /* ---------- footer / contact ---------- */
+  footer {
+    margin-top: clamp(40px, 6vw, 60px);
+    background: var(--mint-deep);
+    color: var(--paper-raised);
+  }
+  .footer-inner {
+    padding: clamp(48px, 8vw, 80px) 0 clamp(32px, 5vw, 44px);
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: clamp(28px, 5vw, 48px);
+  }
+  footer .eyebrow { color: color-mix(in srgb, var(--paper-raised) 75%, transparent); }
+  footer h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    margin: 0 0 20px;
+    text-wrap: balance;
+  }
+  .contact-list { display: flex; flex-direction: column; gap: 14px; }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--paper-raised);
+    font-family: ui-sans-serif, -apple-system, sans-serif;
+    font-size: 16.5px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid color-mix(in srgb, var(--paper-raised) 25%, transparent);
+  }
+  .contact-item .mono-tag {
+    font-family: ui-monospace, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--paper-raised) 65%, transparent);
+    min-width: 78px;
+  }
+  .footer-note {
+    padding: 20px 0 30px;
+    border-top: 1px solid color-mix(in srgb, var(--paper-raised) 20%, transparent);
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    color: color-mix(in srgb, var(--paper-raised) 65%, transparent);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 760px) {
+    .hero { grid-template-columns: 1fr; }
+    .frame { order: -1; max-width: 320px; margin: 0 auto; }
+    .services { grid-template-columns: 1fr; }
+    .stat-strip { grid-template-columns: 1fr; }
+    .callout { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--mint-deep);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .btn-primary { transition: transform 0.15s ease, opacity 0.15s ease; }
+    .btn-primary:hover { transform: translateY(-1px); opacity: 0.92; }
+  }
+</style>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="stamp mono">JG</div>
+      <div class="brand-name">
+        <b>Jéssica Gaspar</b>
+        <em>Engenharia Civil</em>
+      </div>
+    </div>
+    <a class="nav-cta" href="https://wa.me/5511954394404" target="_blank" rel="noopener">
+      (11) 95439-4404
+    </a>
+  </div>
+</header>
+
+<section class="wrap hero">
+  <div>
+    <p class="eyebrow">ART · Regularização · Vistoria Técnica</p>
+    <h1 class="name">Engenharia que confere<br>o que você pagou.</h1>
+    <p class="tagline">
+      Emissão de ART, regularização de reformas em condomínios e vistoria técnica
+      de imóveis novos com laudo detalhado — item a item do memorial descritivo.
+    </p>
+    <div class="chip-row">
+      <span class="chip">17 anos de experiência</span>
+      <span class="chip">Vivência em obras</span>
+      <span class="chip">@engjessicagaspar</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://wa.me/5511954394404" target="_blank" rel="noopener">
+        Falar no WhatsApp
+      </a>
+      <a class="btn btn-ghost" href="https://instagram.com/engjessicagaspar" target="_blank" rel="noopener">
+        Ver no Instagram
+      </a>
+    </div>
+  </div>
+
+  <div class="frame">
+    <span class="frame-corner tl"></span>
+    <span class="frame-corner tr"></span>
+    <span class="frame-corner bl"></span>
+    <span class="frame-corner br"></span>
+    <div class="frame-figure" aria-hidden="true">
+      <svg width="72%" height="86%" viewBox="0 0 200 240" fill="none" style="opacity:0.5">
+        <path d="M40 240V150C40 120 60 100 100 100C140 100 160 120 160 150V240" stroke="#2f5d45" stroke-width="2"/>
+        <circle cx="100" cy="66" r="34" stroke="#2f5d45" stroke-width="2"/>
+        <path d="M66 60C66 40 78 26 100 26C122 26 134 42 134 60" stroke="#2f5d45" stroke-width="2"/>
+      </svg>
+    </div>
+    <span class="frame-caption">FOTO — ENG. JÉSSICA GASPAR</span>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="dim-rule" aria-hidden="true">
+    <span>17 anos</span>
+    <svg viewBox="0 0 100 10" preserveAspectRatio="none"><line x1="0" y1="5" x2="100" y2="5" stroke="currentColor" stroke-width="1"/><line x1="0" y1="1" x2="0" y2="9" stroke="currentColor" stroke-width="1"/><line x1="100" y1="1" x2="100" y2="9" stroke="currentColor" stroke-width="1"/></svg>
+    <span>hoje</span>
+  </div>
+</div>
+
+<div class="wrap stat-strip">
+  <div class="stat-num mono">17</div>
+  <p class="stat-label">
+    <b>Anos de experiência e vivência em obras.</b>
+    Do canteiro à vistoria final — conhecimento técnico aplicado em cada etapa
+    do seu imóvel ou condomínio.
+  </p>
+</div>
+
+<section class="wrap">
+  <div class="section-head">
+    <p class="eyebrow">Serviços</p>
+    <h2 class="section-title">Dois serviços, um mesmo compromisso:<br>documentação técnica que protege você.</h2>
+  </div>
+
+  <div class="services">
+    <article class="service">
+      <span class="service-index mono">ART · REGULARIZAÇÃO</span>
+      <h3>Emissão de ART e regularização de reformas em condomínios</h3>
+      <p>
+        Toda reforma em área comum ou privativa de condomínio precisa de responsável
+        técnico registrado. Cuido da emissão da ART e da regularização completa
+        junto ao condomínio, evitando embargos, multas e problemas na revenda.
+      </p>
+    </article>
+
+    <article class="service">
+      <span class="service-index mono">VISTORIA · LAUDO</span>
+      <h3>Vistoria de imóveis novos com laudo técnico</h3>
+      <p>
+        Conferência item a item dos acabamentos e instalações previstos no
+        memorial descritivo, com emissão de laudo detalhado — assim você sabe,
+        com evidência técnica, que está recebendo exatamente pelo que pagou.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="wrap callout">
+  <div class="callout-label">Por que isso importa</div>
+  <div>
+    <blockquote>
+      "Assim sabemos que você está recebendo pelo que pagou."
+    </blockquote>
+    <div class="callout-body">
+      <p>
+        O memorial descritivo é a promessa em papel — pisos, metais, esquadrias,
+        acabamentos. A vistoria técnica é onde essa promessa é confirmada, ou não.
+      </p>
+      <p>
+        Cada item é conferido em campo e registrado em laudo, dando a você
+        respaldo técnico para exigir correções antes da entrega das chaves.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div>
+      <p class="eyebrow mono">Fale com a engenheira</p>
+      <h2>Regularize sua reforma ou vistorie seu imóvel com quem entende de obra.</h2>
+      <a class="btn btn-primary" href="https://wa.me/5511954394404" target="_blank" rel="noopener" style="background:var(--paper-raised); color:var(--mint-deep);">
+        Chamar no WhatsApp
+      </a>
+    </div>
+    <div class="contact-list">
+      <a class="contact-item" href="https://wa.me/5511954394404" target="_blank" rel="noopener">
+        <span class="mono-tag">WhatsApp</span> (11) 95439-4404
+      </a>
+      <a class="contact-item" href="https://instagram.com/engjessicagaspar" target="_blank" rel="noopener">
+        <span class="mono-tag">Instagram</span> @engjessicagaspar
+      </a>
+    </div>
+  </div>
+  <div class="wrap footer-note">
+    <span>ENG. JÉSSICA GASPAR — ENGENHARIA CIVIL</span>
+    <span>ART · VISTORIAS · REGULARIZAÇÃO</span>
+  </div>
+</footer>
