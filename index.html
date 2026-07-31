@@ -1,585 +1,606 @@
 <title>Eng. Jéssica Gaspar — Engenharia Civil</title>
 <style>
   :root {
-    --ink: #1c2620;
-    --ink-soft: #445248;
-    --paper: #f6f3ec;
-    --paper-raised: #fffdf8;
-    --mint: #4f9b74;
-    --mint-deep: #2f5d45;
-    --mint-wash: #e4ede4;
-    --blueprint: #35526b;
-    --line: #c9c2b2;
-    --line-soft: #dcd6c8;
-    --shadow: 28 34 26;
+    --bg: #f7f9f7;
+    --surface: #ffffff;
+    --surface-alt: #eff4f0;
+    --ink: #0f1b13;
+    --ink-soft: #4b5b50;
+    --primary: #1fae6c;
+    --primary-strong: #0f8452;
+    --primary-soft: #e2f7ec;
+    --accent: #4c6fff;
+    --accent-soft: #e9edff;
+    --border: #e3e7e1;
+    --shadow-c: 15, 27, 19;
   }
-
   @media (prefers-color-scheme: dark) {
     :root {
-      --ink: #eae6da;
-      --ink-soft: #b7bfb2;
-      --paper: #12180f;
-      --paper-raised: #182016;
-      --mint: #7fcb9e;
-      --mint-deep: #a9e2c0;
-      --mint-wash: #1c2b1f;
-      --blueprint: #8db1cc;
-      --line: #33402f;
-      --line-soft: #263025;
-      --shadow: 0 0 0;
+      --bg: #0a100c;
+      --surface: #121a14;
+      --surface-alt: #16211a;
+      --ink: #eaf2ec;
+      --ink-soft: #9fb0a5;
+      --primary: #3ddc93;
+      --primary-strong: #34d399;
+      --primary-soft: #12291f;
+      --accent: #8098ff;
+      --accent-soft: #1a2040;
+      --border: #223028;
+      --shadow-c: 0, 0, 0;
     }
   }
   :root[data-theme="dark"] {
-    --ink: #eae6da;
-    --ink-soft: #b7bfb2;
-    --paper: #12180f;
-    --paper-raised: #182016;
-    --mint: #7fcb9e;
-    --mint-deep: #a9e2c0;
-    --mint-wash: #1c2b1f;
-    --blueprint: #8db1cc;
-    --line: #33402f;
-    --line-soft: #263025;
-    --shadow: 0 0 0;
+    --bg: #0a100c; --surface: #121a14; --surface-alt: #16211a;
+    --ink: #eaf2ec; --ink-soft: #9fb0a5; --primary: #3ddc93;
+    --primary-strong: #34d399; --primary-soft: #12291f; --accent: #8098ff;
+    --accent-soft: #1a2040; --border: #223028; --shadow-c: 0, 0, 0;
   }
   :root[data-theme="light"] {
-    --ink: #1c2620;
-    --ink-soft: #445248;
-    --paper: #f6f3ec;
-    --paper-raised: #fffdf8;
-    --mint: #4f9b74;
-    --mint-deep: #2f5d45;
-    --mint-wash: #e4ede4;
-    --blueprint: #35526b;
-    --line: #c9c2b2;
-    --line-soft: #dcd6c8;
-    --shadow: 28 34 26;
+    --bg: #f7f9f7; --surface: #ffffff; --surface-alt: #eff4f0;
+    --ink: #0f1b13; --ink-soft: #4b5b50; --primary: #1fae6c;
+    --primary-strong: #0f8452; --primary-soft: #e2f7ec; --accent: #4c6fff;
+    --accent-soft: #e9edff; --border: #e3e7e1; --shadow-c: 15, 27, 19;
   }
 
   * { box-sizing: border-box; }
-
   body {
     margin: 0;
-    background: var(--paper);
+    background: var(--bg);
     color: var(--ink);
-    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, ui-serif, serif;
+    font-family: -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-
-  .sans {
-    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
-  }
-  .mono {
-    font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
-  }
-
+  .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
   a { color: inherit; }
+  img, svg { display: block; }
 
-  .wrap {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 0 clamp(20px, 5vw, 56px);
-  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px); }
 
-  /* ---------- dimension-line divider (blueprint tick rule) ---------- */
-  .dim-rule {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--mint-deep);
-    opacity: 0.75;
-  }
-  .dim-rule svg { flex: 1; height: 10px; display: block; }
-  .dim-rule span {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    white-space: nowrap;
-    text-transform: uppercase;
+  h1, h2, h3 {
+    font-family: -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin: 0;
+    text-wrap: balance;
   }
 
-  /* ---------- header ---------- */
-  header {
-    padding: 22px 0 0;
-  }
-  .nav {
-    display: flex;
+  .pill {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    padding-bottom: 18px;
-    border-bottom: 1px solid var(--line);
-  }
-  .stamp {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    border: 1.5px solid var(--mint-deep);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    letter-spacing: 0.03em;
-    color: var(--mint-deep);
-    flex-shrink: 0;
-  }
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .brand-name {
-    font-size: 14px;
-    line-height: 1.25;
-  }
-  .brand-name b { display: block; font-size: 15px; }
-  .brand-name em {
-    font-style: normal;
-    font-family: ui-monospace, monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .nav-cta {
-    font-family: ui-monospace, monospace;
-    font-size: 12.5px;
-    letter-spacing: 0.04em;
-    padding: 9px 16px;
-    border-radius: 3px;
-    background: var(--mint-deep);
-    color: var(--paper-raised);
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  /* ---------- hero ---------- */
-  .hero {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: clamp(28px, 5vw, 64px);
-    align-items: center;
-    padding: clamp(40px, 7vw, 80px) 0 clamp(48px, 7vw, 72px);
-  }
-  .eyebrow {
+    gap: 8px;
     font-family: ui-monospace, monospace;
     font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--mint-deep);
-    margin: 0 0 16px;
-  }
-  h1.name {
-    font-size: clamp(40px, 6vw, 62px);
-    line-height: 1.02;
-    margin: 0 0 18px;
-    text-wrap: balance;
-    letter-spacing: -0.01em;
-  }
-  .tagline {
-    font-family: ui-sans-serif, -apple-system, sans-serif;
-    font-size: clamp(16px, 2vw, 18.5px);
-    line-height: 1.55;
-    color: var(--ink-soft);
-    max-width: 46ch;
-    margin: 0 0 28px;
-  }
-  .chip-row {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
-  }
-  .chip {
-    font-family: ui-monospace, monospace;
-    font-size: 11.5px;
-    letter-spacing: 0.05em;
-    padding: 7px 12px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    color: var(--ink-soft);
-  }
-  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn {
-    font-family: ui-sans-serif, -apple-system, sans-serif;
+    letter-spacing: 0.04em;
     font-weight: 600;
-    font-size: 15px;
-    padding: 13px 22px;
-    border-radius: 4px;
+    padding: 7px 14px;
+    border-radius: 999px;
+  }
+  .pill-primary { background: var(--primary-soft); color: var(--primary-strong); }
+  .pill-outline { border: 1px solid var(--border); color: var(--ink-soft); }
+
+  .btn {
+    font-weight: 700;
+    font-size: 15.5px;
+    padding: 14px 26px;
+    border-radius: 12px;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: 9px;
+    border: none;
+    cursor: pointer;
   }
-  .btn-primary { background: var(--mint-deep); color: var(--paper-raised); }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-strong) 100%);
+    color: #ffffff;
+    box-shadow: 0 10px 24px -8px rgba(var(--shadow-c), 0.35);
+  }
   .btn-ghost {
-    border: 1px solid var(--line);
+    background: var(--surface);
+    border: 1px solid var(--border);
     color: var(--ink);
   }
+  @media (prefers-reduced-motion: no-preference) {
+    .btn { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary:hover { box-shadow: 0 14px 28px -8px rgba(var(--shadow-c), 0.45); }
+  }
 
-  /* ---------- photo frame ---------- */
-  .frame {
+  .icon-chip {
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .icon-chip svg { width: 22px; height: 22px; }
+
+  /* ---------- header ---------- */
+  header { position: relative; z-index: 5; padding: 22px 0 0; }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 18px;
+    border-radius: 16px;
+    background: color-mix(in srgb, var(--surface) 88%, transparent);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+  }
+  .brand { display: flex; align-items: center; gap: 11px; }
+  .logo-mark {
+    width: 40px; height: 40px; border-radius: 11px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 14px; letter-spacing: -0.02em;
+  }
+  .brand-name b { display: block; font-size: 15px; font-weight: 700; }
+  .brand-name span { font-size: 12px; color: var(--ink-soft); }
+
+  /* ---------- hero ---------- */
+  .hero-wrap { position: relative; overflow: hidden; }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.5;
+    z-index: 0;
+  }
+  .blob-1 { width: 420px; height: 420px; background: var(--primary); top: -160px; right: -120px; opacity: 0.28; }
+  .blob-2 { width: 320px; height: 320px; background: var(--accent); bottom: -140px; left: -100px; opacity: 0.2; }
+
+  .hero {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+    padding: clamp(48px, 8vw, 96px) 0 clamp(56px, 8vw, 88px);
+  }
+  h1.name {
+    font-size: clamp(38px, 5.6vw, 60px);
+    line-height: 1.04;
+    margin: 18px 0 20px;
+  }
+  h1.name .grad {
+    background: linear-gradient(120deg, var(--primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .tagline {
+    font-size: clamp(16px, 2vw, 18.5px);
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 0 0 28px;
+  }
+  .chip-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .hero-card {
     position: relative;
     aspect-ratio: 4 / 5;
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    background:
-      linear-gradient(var(--line-soft) 1px, transparent 1px) 0 0 / 100% 14.28%,
-      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px) 0 0 / 14.28% 100%,
-      var(--mint-wash);
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    background: linear-gradient(165deg, var(--primary-soft), var(--surface) 60%);
     overflow: hidden;
+    box-shadow: 0 30px 60px -24px rgba(var(--shadow-c), 0.25);
   }
-  .frame-corner {
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    border: 1.5px solid var(--mint-deep);
-    opacity: 0.8;
+  .hero-card .ring {
+    position: absolute; border-radius: 50%; border: 1.5px dashed color-mix(in srgb, var(--primary) 55%, transparent);
   }
-  .frame-corner.tl { top: 10px; left: 10px; border-right: none; border-bottom: none; }
-  .frame-corner.tr { top: 10px; right: 10px; border-left: none; border-bottom: none; }
-  .frame-corner.bl { bottom: 10px; left: 10px; border-right: none; border-top: none; }
-  .frame-corner.br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
-  .frame-figure {
+  .hero-card .ring-1 { width: 190px; height: 190px; top: 14%; left: 50%; transform: translateX(-50%); }
+  .hero-card .ring-2 { width: 130px; height: 130px; top: 14%; left: 50%; transform: translateX(-50%); border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+  .hero-figure {
+    position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center;
+  }
+  .hero-card .float-card {
     position: absolute;
-    inset: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 10px 14px;
+    font-size: 12.5px;
+    font-weight: 700;
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 14px 30px -12px rgba(var(--shadow-c), 0.3);
   }
-  .frame-caption {
-    position: absolute;
-    left: 16px;
-    bottom: 14px;
-    font-family: ui-monospace, monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.06em;
-    color: var(--mint-deep);
-    background: color-mix(in srgb, var(--paper) 78%, transparent);
-    padding: 3px 8px;
-    border-radius: 3px;
+  .float-card .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); flex-shrink: 0; }
+  .float-1 { top: 16px; left: 16px; }
+  .float-2 { bottom: 20px; right: 16px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .float-card { animation: bob 5s ease-in-out infinite; }
+    .float-2 { animation-delay: -2.4s; }
   }
+  @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
   /* ---------- stat strip ---------- */
   .stat-strip {
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
-    gap: clamp(20px, 5vw, 48px);
-    padding: 36px 0;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+    gap: clamp(24px, 5vw, 48px);
+    padding: 30px clamp(24px, 4vw, 40px);
+    margin: 8px 0 clamp(56px, 8vw, 88px);
+    border-radius: 20px;
+    background: linear-gradient(120deg, var(--surface-alt), var(--surface));
+    border: 1px solid var(--border);
   }
   .stat-num {
-    font-size: clamp(64px, 10vw, 104px);
+    font-family: -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 800;
+    font-size: clamp(56px, 8vw, 92px);
     line-height: 0.85;
-    color: var(--mint-deep);
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
     font-variant-numeric: tabular-nums;
   }
-  .stat-label {
-    font-family: ui-sans-serif, -apple-system, sans-serif;
-    font-size: clamp(15px, 1.8vw, 18px);
-    line-height: 1.4;
-    max-width: 34ch;
-    color: var(--ink-soft);
-  }
+  .stat-label { font-size: clamp(15px, 1.8vw, 18px); line-height: 1.45; max-width: 34ch; color: var(--ink-soft); }
   .stat-label b { color: var(--ink); }
 
+  /* ---------- section head ---------- */
+  .section-head { padding: 0 0 30px; max-width: 60ch; }
+  .section-title { font-size: clamp(26px, 3.4vw, 36px); margin: 14px 0 0; }
+  .reveal { opacity: 0; transform: translateY(18px); }
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { transition: opacity 0.6s ease, transform 0.6s ease; }
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
   /* ---------- services ---------- */
-  .section-head {
-    padding: clamp(56px, 8vw, 84px) 0 28px;
-  }
-  .section-title {
-    font-size: clamp(26px, 3.4vw, 34px);
-    margin: 10px 0 0;
-    text-wrap: balance;
-  }
-
-  .services {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 22px;
-    padding-bottom: clamp(40px, 6vw, 64px);
-  }
+  .services { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding-bottom: clamp(48px, 7vw, 80px); }
   .service {
-    position: relative;
-    background: var(--paper-raised);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 30px 26px 26px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px;
   }
-  .service::before,
-  .service::after {
-    content: "+";
-    position: absolute;
-    color: var(--line);
-    font-size: 13px;
-    font-family: ui-monospace, monospace;
+  @media (prefers-reduced-motion: no-preference) {
+    .service { transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
+    .service:hover { transform: translateY(-4px); box-shadow: 0 20px 36px -18px rgba(var(--shadow-c), 0.3); border-color: color-mix(in srgb, var(--primary) 40%, var(--border)); }
   }
-  .service::before { top: 8px; left: 10px; }
-  .service::after { bottom: 8px; right: 10px; }
-  .service-index {
-    font-family: ui-monospace, monospace;
-    font-size: 11.5px;
-    letter-spacing: 0.08em;
-    color: var(--mint-deep);
-    display: block;
-    margin-bottom: 14px;
-  }
-  .service h3 {
-    font-size: 21px;
-    margin: 0 0 12px;
-    text-wrap: balance;
-  }
-  .service p {
-    font-family: ui-sans-serif, -apple-system, sans-serif;
-    font-size: 15px;
-    line-height: 1.62;
-    color: var(--ink-soft);
-    margin: 0;
-  }
+  .service .icon-chip { margin-bottom: 18px; }
+  .service h3 { font-size: 19px; margin: 0 0 10px; font-weight: 700; }
+  .service p { font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); margin: 0; }
 
-  /* ---------- trust / callout ---------- */
+  /* ---------- callout ---------- */
   .callout {
-    display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: clamp(24px, 5vw, 56px);
+    display: grid; grid-template-columns: auto 1fr; gap: clamp(20px, 4vw, 36px);
     align-items: start;
-    padding: clamp(40px, 6vw, 60px) 0;
-    border-top: 1px solid var(--line);
+    padding: clamp(36px, 5vw, 52px);
+    margin-bottom: clamp(56px, 8vw, 88px);
+    border-radius: 22px;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
   }
-  .callout-label {
-    font-family: ui-monospace, monospace;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--mint-deep);
+  .quote-mark {
+    font-family: -apple-system, "SF Pro Display", sans-serif;
+    font-size: 64px; font-weight: 800; line-height: 0.6;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  .callout blockquote {
-    margin: 14px 0 0;
-    font-size: clamp(21px, 2.6vw, 28px);
-    line-height: 1.4;
-    text-wrap: balance;
-  }
-  .callout-body {
-    font-family: ui-sans-serif, -apple-system, sans-serif;
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--ink-soft);
-    padding-top: 6px;
-  }
-  .callout-body p { margin: 0 0 14px; }
+  .callout blockquote { margin: 0 0 16px; font-size: clamp(20px, 2.4vw, 25px); font-weight: 700; line-height: 1.35; letter-spacing: -0.01em; }
+  .callout-body { font-size: 15.5px; line-height: 1.7; color: var(--ink-soft); }
+  .callout-body p { margin: 0 0 12px; }
   .callout-body p:last-child { margin: 0; }
 
-  /* ---------- footer / contact ---------- */
-  footer {
-    margin-top: clamp(40px, 6vw, 60px);
-    background: var(--mint-deep);
-    color: var(--paper-raised);
-  }
-  .footer-inner {
-    padding: clamp(48px, 8vw, 80px) 0 clamp(32px, 5vw, 44px);
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: clamp(28px, 5vw, 48px);
-  }
-  footer .eyebrow { color: color-mix(in srgb, var(--paper-raised) 75%, transparent); }
-  footer h2 {
-    font-size: clamp(28px, 4vw, 40px);
-    margin: 0 0 20px;
-    text-wrap: balance;
-  }
-  .contact-list { display: flex; flex-direction: column; gap: 14px; }
-  .contact-item {
-    display: flex;
+  /* ---------- about ---------- */
+  .about {
+    display: grid; grid-template-columns: 1.3fr 0.7fr; gap: clamp(24px, 5vw, 48px);
     align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    color: var(--paper-raised);
-    font-family: ui-sans-serif, -apple-system, sans-serif;
-    font-size: 16.5px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid color-mix(in srgb, var(--paper-raised) 25%, transparent);
+    padding: clamp(40px, 6vw, 56px);
+    margin-bottom: clamp(56px, 8vw, 88px);
+    border-radius: 24px;
+    background: linear-gradient(135deg, var(--primary-strong), var(--accent));
+    color: #ffffff;
   }
-  .contact-item .mono-tag {
-    font-family: ui-monospace, monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: color-mix(in srgb, var(--paper-raised) 65%, transparent);
-    min-width: 78px;
+  .about .pill { background: rgba(255,255,255,0.18); color: #fff; }
+  .about-body { font-size: clamp(16px, 1.9vw, 18px); line-height: 1.7; margin: 16px 0 0; max-width: 52ch; opacity: 0.96; }
+  .about .btn-primary { background: #ffffff; color: var(--primary-strong); box-shadow: 0 12px 26px -10px rgba(0,0,0,0.35); }
+
+  /* ---------- audience ---------- */
+  .audience-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .audience-item {
+    border: 1px solid var(--border); border-radius: 16px; padding: 22px 20px;
+    background: var(--surface);
   }
+  .audience-item .icon-chip { margin-bottom: 16px; }
+  .audience-item h4 { margin: 0 0 8px; font-size: 15.5px; font-weight: 700; }
+  .audience-item p { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
+
+  /* ---------- benefits ---------- */
+  .benefits-panel { border-radius: 22px; background: var(--surface); border: 1px solid var(--border); padding: clamp(32px, 5vw, 44px); }
+  .benefits-list { list-style: none; margin: 26px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 32px; }
+  .benefits-list li { display: flex; gap: 12px; font-size: 15px; line-height: 1.5; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .check {
+    width: 22px; height: 22px; border-radius: 7px; background: var(--primary-soft);
+    color: var(--primary-strong); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+  }
+  .check svg { width: 13px; height: 13px; }
+
+  section { padding-top: clamp(20px, 4vw, 32px); }
+
+  /* ---------- footer ---------- */
+  footer { margin-top: clamp(20px, 4vw, 32px); }
+  .footer-panel {
+    position: relative; overflow: hidden;
+    border-radius: 28px 28px 0 0;
+    background: #0f1b13;
+    color: #eef5f0;
+    padding: clamp(48px, 8vw, 80px) clamp(24px, 5vw, 56px) clamp(28px, 4vw, 36px);
+  }
+  .footer-panel .blob-1 { background: var(--primary); opacity: 0.35; top: -200px; right: -100px; }
+  .footer-panel .blob-2 { background: var(--accent); opacity: 0.22; bottom: -160px; left: -80px; }
+  .footer-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(28px, 5vw, 48px); max-width: 1120px; margin: 0 auto; }
+  footer h2 { font-size: clamp(28px, 4vw, 42px); margin: 16px 0 22px; }
+  .contact-list { display: flex; flex-direction: column; gap: 12px; }
+  .contact-item {
+    display: flex; align-items: center; gap: 12px; text-decoration: none; color: #eef5f0;
+    font-size: 16px; font-weight: 600; padding: 14px 16px; border-radius: 12px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .contact-item { transition: background 0.18s ease; }
+    .contact-item:hover { background: rgba(255,255,255,0.12); }
+  }
+  .contact-item .icon-chip { width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.12); }
+  .contact-item .icon-chip svg { width: 17px; height: 17px; }
   .footer-note {
-    padding: 20px 0 30px;
-    border-top: 1px solid color-mix(in srgb, var(--paper-raised) 20%, transparent);
-    font-family: ui-monospace, monospace;
-    font-size: 11px;
-    letter-spacing: 0.03em;
-    color: color-mix(in srgb, var(--paper-raised) 65%, transparent);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
+    position: relative; z-index: 1; max-width: 1120px; margin: clamp(28px,4vw,40px) auto 0;
+    padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.14);
+    font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 0.03em; color: rgba(238,245,240,0.55);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
   }
 
   @media (max-width: 760px) {
     .hero { grid-template-columns: 1fr; }
-    .frame { order: -1; max-width: 320px; margin: 0 auto; }
+    .hero-card { order: -1; max-width: 340px; margin: 0 auto; }
     .services { grid-template-columns: 1fr; }
     .stat-strip { grid-template-columns: 1fr; }
     .callout { grid-template-columns: 1fr; }
+    .about { grid-template-columns: 1fr; text-align: left; }
+    .audience-grid { grid-template-columns: repeat(2, 1fr); }
+    .benefits-list { grid-template-columns: 1fr; }
     .footer-inner { grid-template-columns: 1fr; }
   }
 
-  :focus-visible {
-    outline: 2px solid var(--mint-deep);
-    outline-offset: 3px;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .btn-primary { transition: transform 0.15s ease, opacity 0.15s ease; }
-    .btn-primary:hover { transform: translateY(-1px); opacity: 0.92; }
-  }
+  :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
 </style>
 
 <header>
   <div class="wrap nav">
     <div class="brand">
-      <div class="stamp mono">JG</div>
+      <div class="logo-mark">JG</div>
       <div class="brand-name">
         <b>Jéssica Gaspar</b>
-        <em>Engenharia Civil</em>
+        <span>Engenharia Civil</span>
       </div>
     </div>
-    <a class="nav-cta" href="https://wa.me/5511954394404" target="_blank" rel="noopener">
+    <a class="btn btn-primary" href="https://wa.me/5511954394404" target="_blank" rel="noopener" style="padding:10px 18px; font-size:14px;">
       (11) 95439-4404
     </a>
   </div>
 </header>
 
-<section class="wrap hero">
-  <div>
-    <p class="eyebrow">ART · Regularização · Vistoria Técnica</p>
-    <h1 class="name">Engenharia que confere<br>o que você pagou.</h1>
-    <p class="tagline">
-      Emissão de ART, regularização de reformas em condomínios e vistoria técnica
-      de imóveis novos com laudo detalhado — item a item do memorial descritivo.
+<div class="hero-wrap">
+  <span class="blob blob-1"></span>
+  <span class="blob blob-2"></span>
+  <section class="wrap hero">
+    <div>
+      <span class="pill pill-primary">ART · Regularização · Vistoria Técnica</span>
+      <h1 class="name">Engenharia que confere<br><span class="grad">o que você pagou.</span></h1>
+      <p class="tagline">
+        Emissão de ART, regularização de reformas em condomínios e vistoria técnica
+        de imóveis novos com laudo detalhado — item a item do memorial descritivo.
+      </p>
+      <div class="chip-row">
+        <span class="pill pill-outline">17 anos de experiência</span>
+        <span class="pill pill-outline">Vivência em obras</span>
+        <span class="pill pill-outline">@engjessicagaspar</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://wa.me/5511954394404" target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <a class="btn btn-ghost" href="https://instagram.com/engjessicagaspar" target="_blank" rel="noopener">Ver no Instagram</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <span class="ring ring-1"></span>
+      <span class="ring ring-2"></span>
+      <div class="hero-figure" aria-hidden="true">
+        <svg width="60%" height="80%" viewBox="0 0 200 240" fill="none">
+          <path d="M40 240V150C40 120 60 100 100 100C140 100 160 120 160 150V240" stroke="var(--primary-strong)" stroke-width="2.5"/>
+          <circle cx="100" cy="66" r="34" stroke="var(--primary-strong)" stroke-width="2.5"/>
+          <path d="M66 60C66 40 78 26 100 26C122 26 134 42 134 60" stroke="var(--primary-strong)" stroke-width="2.5"/>
+        </svg>
+      </div>
+      <div class="float-card float-1"><span class="dot"></span>ART emitida</div>
+      <div class="float-card float-2"><span class="dot" style="background:var(--accent);"></span>Laudo conferido</div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <div class="stat-strip reveal">
+    <div class="stat-num mono">17</div>
+    <p class="stat-label">
+      <b>Anos de experiência e vivência em obras.</b>
+      Do canteiro à vistoria final — conhecimento técnico aplicado em cada etapa
+      do seu imóvel ou condomínio.
     </p>
-    <div class="chip-row">
-      <span class="chip">17 anos de experiência</span>
-      <span class="chip">Vivência em obras</span>
-      <span class="chip">@engjessicagaspar</span>
-    </div>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="https://wa.me/5511954394404" target="_blank" rel="noopener">
-        Falar no WhatsApp
-      </a>
-      <a class="btn btn-ghost" href="https://instagram.com/engjessicagaspar" target="_blank" rel="noopener">
-        Ver no Instagram
-      </a>
-    </div>
+  </div>
+</div>
+
+<section class="wrap">
+  <div class="section-head reveal">
+    <span class="pill pill-primary">Serviços</span>
+    <h2 class="section-title">Dois pontos de atuação,<br>quatro frentes de trabalho técnico.</h2>
   </div>
 
-  <div class="frame">
-    <span class="frame-corner tl"></span>
-    <span class="frame-corner tr"></span>
-    <span class="frame-corner bl"></span>
-    <span class="frame-corner br"></span>
-    <div class="frame-figure" aria-hidden="true">
-      <svg width="72%" height="86%" viewBox="0 0 200 240" fill="none" style="opacity:0.5">
-        <path d="M40 240V150C40 120 60 100 100 100C140 100 160 120 160 150V240" stroke="#2f5d45" stroke-width="2"/>
-        <circle cx="100" cy="66" r="34" stroke="#2f5d45" stroke-width="2"/>
-        <path d="M66 60C66 40 78 26 100 26C122 26 134 42 134 60" stroke="#2f5d45" stroke-width="2"/>
-      </svg>
-    </div>
-    <span class="frame-caption">FOTO — ENG. JÉSSICA GASPAR</span>
+  <div class="services">
+    <article class="service reveal">
+      <div class="icon-chip" style="background:var(--primary-soft); color:var(--primary-strong);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg>
+      </div>
+      <h3>Emissão de ART</h3>
+      <p>Registro da Anotação de Responsabilidade Técnica junto ao CREA para reformas em unidades e áreas comuns, formalizando quem responde tecnicamente pela obra.</p>
+    </article>
+
+    <article class="service reveal">
+      <div class="icon-chip" style="background:var(--accent-soft); color:var(--accent);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg>
+      </div>
+      <h3>Regularização junto ao condomínio</h3>
+      <p>Alinhamento entre o que foi executado e a documentação exigida pelo condomínio e pelos órgãos competentes, evitando embargos, multas e problemas na revenda.</p>
+    </article>
+
+    <article class="service reveal">
+      <div class="icon-chip" style="background:var(--primary-soft); color:var(--primary-strong);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8 11l2 2 4-4"/></svg>
+      </div>
+      <h3>Vistoria de imóveis novos</h3>
+      <p>Vistoria técnica no momento da entrega de chaves, com conferência presencial de estrutura, instalações e acabamentos.</p>
+    </article>
+
+    <article class="service reveal">
+      <div class="icon-chip" style="background:var(--accent-soft); color:var(--accent);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+      </div>
+      <h3>Laudo do memorial descritivo</h3>
+      <p>Conferência item a item do memorial descritivo com emissão de laudo detalhado — respaldo técnico para exigir correções antes de assinar o recebimento.</p>
+    </article>
   </div>
 </section>
 
 <div class="wrap">
-  <div class="dim-rule" aria-hidden="true">
-    <span>17 anos</span>
-    <svg viewBox="0 0 100 10" preserveAspectRatio="none"><line x1="0" y1="5" x2="100" y2="5" stroke="currentColor" stroke-width="1"/><line x1="0" y1="1" x2="0" y2="9" stroke="currentColor" stroke-width="1"/><line x1="100" y1="1" x2="100" y2="9" stroke="currentColor" stroke-width="1"/></svg>
-    <span>hoje</span>
+  <div class="callout reveal">
+    <span class="quote-mark">"</span>
+    <div>
+      <blockquote>Assim sabemos que você está recebendo pelo que pagou.</blockquote>
+      <div class="callout-body">
+        <p>O memorial descritivo é a promessa em papel — pisos, metais, esquadrias, acabamentos. A vistoria técnica é onde essa promessa é confirmada, ou não.</p>
+        <p>Cada item é conferido em campo e registrado em laudo, dando a você respaldo técnico para exigir correções antes da entrega das chaves.</p>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="wrap stat-strip">
-  <div class="stat-num mono">17</div>
-  <p class="stat-label">
-    <b>Anos de experiência e vivência em obras.</b>
-    Do canteiro à vistoria final — conhecimento técnico aplicado em cada etapa
-    do seu imóvel ou condomínio.
-  </p>
+<div class="wrap">
+  <div class="about reveal">
+    <div>
+      <span class="pill">Sobre mim</span>
+      <p class="about-body">
+        Sou engenheira civil com 17 anos de experiência e vivência em obras —
+        do canteiro à vistoria final. Hoje concentro esse tempo de estrada em
+        dois pontos que mais geram dor de cabeça: regularizar reforma em
+        condomínio sem embargo, e garantir que quem compra imóvel novo receba
+        exatamente o que foi prometido no papel.
+      </p>
+    </div>
+    <a class="btn btn-primary" href="https://wa.me/5511954394404" target="_blank" rel="noopener">Falar no WhatsApp</a>
+  </div>
 </div>
 
 <section class="wrap">
-  <div class="section-head">
-    <p class="eyebrow">Serviços</p>
-    <h2 class="section-title">Dois serviços, um mesmo compromisso:<br>documentação técnica que protege você.</h2>
+  <div class="section-head reveal">
+    <span class="pill pill-primary">Para quem é</span>
+    <h2 class="section-title">Se você está em uma dessas situações,<br>é hora de chamar uma engenheira.</h2>
   </div>
-
-  <div class="services">
-    <article class="service">
-      <span class="service-index mono">ART · REGULARIZAÇÃO</span>
-      <h3>Emissão de ART e regularização de reformas em condomínios</h3>
-      <p>
-        Toda reforma em área comum ou privativa de condomínio precisa de responsável
-        técnico registrado. Cuido da emissão da ART e da regularização completa
-        junto ao condomínio, evitando embargos, multas e problemas na revenda.
-      </p>
-    </article>
-
-    <article class="service">
-      <span class="service-index mono">VISTORIA · LAUDO</span>
-      <h3>Vistoria de imóveis novos com laudo técnico</h3>
-      <p>
-        Conferência item a item dos acabamentos e instalações previstos no
-        memorial descritivo, com emissão de laudo detalhado — assim você sabe,
-        com evidência técnica, que está recebendo exatamente pelo que pagou.
-      </p>
-    </article>
+  <div class="audience-grid">
+    <div class="audience-item reveal">
+      <div class="icon-chip" style="background:var(--primary-soft); color:var(--primary-strong);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M6 21V8l6-4 6 4v13"/><path d="M10 21v-5h4v5"/><path d="M9 11h1M14 11h1M9 15h1M14 15h1"/></svg>
+      </div>
+      <h4>Síndicos e administradoras</h4>
+      <p>Regularização de reformas em áreas comuns e unidades do condomínio.</p>
+    </div>
+    <div class="audience-item reveal">
+      <div class="icon-chip" style="background:var(--accent-soft); color:var(--accent);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.1-3.1a4 4 0 0 1-5.7 5.7L7 20l-3-3 8.1-8.1a4 4 0 0 1 5.7-5.7z"/></svg>
+      </div>
+      <h4>Moradores em reforma</h4>
+      <p>Emissão de ART para reformas internas que exigem responsável técnico.</p>
+    </div>
+    <div class="audience-item reveal">
+      <div class="icon-chip" style="background:var(--primary-soft); color:var(--primary-strong);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.5V21H3v-8.5"/><path d="M3 12.5L12 4l9 8.5"/><path d="M10 21v-5h4v5"/></svg>
+      </div>
+      <h4>Compradores de imóvel novo</h4>
+      <p>Vistoria de entrega com laudo, antes de assinar o recebimento das chaves.</p>
+    </div>
+    <div class="audience-item reveal">
+      <div class="icon-chip" style="background:var(--accent-soft); color:var(--accent);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M6 21V10l5-4 5 4v11"/><path d="M16 21v-7l4-2v9"/></svg>
+      </div>
+      <h4>Construtoras e incorporadoras</h4>
+      <p>Vistoria técnica de apoio na conferência do padrão de entrega.</p>
+    </div>
   </div>
 </section>
 
-<section class="wrap callout">
-  <div class="callout-label">Por que isso importa</div>
-  <div>
-    <blockquote>
-      "Assim sabemos que você está recebendo pelo que pagou."
-    </blockquote>
-    <div class="callout-body">
-      <p>
-        O memorial descritivo é a promessa em papel — pisos, metais, esquadrias,
-        acabamentos. A vistoria técnica é onde essa promessa é confirmada, ou não.
-      </p>
-      <p>
-        Cada item é conferido em campo e registrado em laudo, dando a você
-        respaldo técnico para exigir correções antes da entrega das chaves.
-      </p>
-    </div>
+<section class="wrap">
+  <div class="benefits-panel reveal">
+    <span class="pill pill-primary">Por que contratar</span>
+    <h2 class="section-title">O que você ganha com<br>documentação técnica de verdade.</h2>
+    <ul class="benefits-list">
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Evita multas e embargos por reforma sem regularização</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Documento técnico com validade formal, registrado no CREA</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Respaldo por escrito para negociar correções antes da entrega</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Conferência item a item do memorial descritivo, não por amostragem</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Comunicação direta pelo WhatsApp, sem intermediário</li>
+      <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>17 anos de vivência em obra aplicados a cada vistoria</li>
+    </ul>
   </div>
 </section>
 
 <footer>
-  <div class="wrap footer-inner">
-    <div>
-      <p class="eyebrow mono">Fale com a engenheira</p>
-      <h2>Regularize sua reforma ou vistorie seu imóvel com quem entende de obra.</h2>
-      <a class="btn btn-primary" href="https://wa.me/5511954394404" target="_blank" rel="noopener" style="background:var(--paper-raised); color:var(--mint-deep);">
-        Chamar no WhatsApp
-      </a>
+  <div class="footer-panel">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <div class="footer-inner">
+      <div>
+        <span class="pill" style="background:rgba(255,255,255,0.12); color:#eef5f0;">Fale com a engenheira</span>
+        <h2>Regularize sua reforma ou vistorie seu imóvel com quem entende de obra.</h2>
+        <a class="btn btn-primary" href="https://wa.me/5511954394404" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      </div>
+      <div class="contact-list">
+        <a class="contact-item" href="https://wa.me/5511954394404" target="_blank" rel="noopener">
+          <span class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.5L3 20l1.1-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg></span>
+          (11) 95439-4404
+        </a>
+        <a class="contact-item" href="https://instagram.com/engjessicagaspar" target="_blank" rel="noopener">
+          <span class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></span>
+          @engjessicagaspar
+        </a>
+      </div>
     </div>
-    <div class="contact-list">
-      <a class="contact-item" href="https://wa.me/5511954394404" target="_blank" rel="noopener">
-        <span class="mono-tag">WhatsApp</span> (11) 95439-4404
-      </a>
-      <a class="contact-item" href="https://instagram.com/engjessicagaspar" target="_blank" rel="noopener">
-        <span class="mono-tag">Instagram</span> @engjessicagaspar
-      </a>
+    <div class="footer-note">
+      <span>ENG. JÉSSICA GASPAR — ENGENHARIA CIVIL</span>
+      <span>ART · VISTORIAS · REGULARIZAÇÃO</span>
     </div>
-  </div>
-  <div class="wrap footer-note">
-    <span>ENG. JÉSSICA GASPAR — ENGENHARIA CIVIL</span>
-    <span>ART · VISTORIAS · REGULARIZAÇÃO</span>
   </div>
 </footer>
+
+<script>
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  })();
+</script>
